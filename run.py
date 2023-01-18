@@ -83,7 +83,7 @@ def main(argv):
                 ])
 
         # Upload annotations
-        cj.job.update(progress=70, statusComment="Uploading extracted annotation...")
+        cj.job.update(progress=70, statusComment="Uploading annotations...")
         annotations.save()
 
         # Finished
