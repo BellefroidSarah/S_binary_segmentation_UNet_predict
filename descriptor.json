@@ -1,0 +1,93 @@
+{
+    "name": "binary_segmentation_UNet_predict",
+    "description": "Predicting a segmentation mask using a UNet",
+    "schema-version": "cytomine-0.1",
+	"command-line": "python run.py --cytomine_host [CYTOMINE_HOST] --cytomine_public_key [CYTOMINE_PUBLIC_KEY] --cytomine_private_key [CYTOMINE_PRIVATE_KEY] --cytomine_id_project [CYTOMINE_ID_PROJECT] --cytomine_id_software [CYTOMINE_ID_SOFTWARE] --cytomine_id_job [CYTOMINE_ID_JOB] --images_to_predict [IMAGES_TO_PREDICT] --threshold [THRESHOLD]",
+    "container-image": {
+		"image": "bellefroid/s_binary_segmentation_unet_predict",
+		"type": "singularity"
+	},
+	"inputs": [
+        {
+        	"id": "cytomine_host",
+			"value-key": "[@ID]",
+			"command-line-flag": "--cytomine_host",
+      		"name": "Cytomine host",
+      		"set-by-server": true,
+      		"optional": false,
+      		"type": "String"
+    	},
+    	{
+			"id": "cytomine_public_key",
+			"value-key": "[@ID]",
+      		"command-line-flag": "--@id",
+			"name": "Cytomine public key",
+			"set-by-server": true,
+			"optional": false,
+			"type": "String"
+    	},
+    	{
+    		"id": "cytomine_private_key",
+			"value-key": "[@ID]",
+      		"command-line-flag": "--@id",
+			"name": "Cytomine private key",
+			"set-by-server": true,
+			"optional": false,
+			"type": "String"
+    	},
+		{
+			"id": "cytomine_id_project",
+			"value-key": "[@ID]",
+      		"command-line-flag": "--@id",
+			"name": "Cytomine project ID",
+			"set-by-server": true,
+			"optional": false,
+			"type": "Number"
+    	},
+		{
+			"id": "cytomine_id_software",
+			"value-key": "[@ID]",
+      		"command-line-flag": "--@id",
+			"name": "Cytomine software ID",
+			"set-by-server": true,
+			"optional": false,
+			"type": "Number"
+		},
+        {
+            "id": "cytomine_id_job",
+			"value-key": "[@ID]",
+      		"command-line-flag": "--@id",
+            "name": "Training job ID",
+            "description": "The identifier of the training job.",
+            "set-by-server": "false",
+            "optional": false,
+			"type": "Domain",
+			"uri": "/api/job.json?project=$currentProject$",
+			"uri-sort-attribute": "softwareName",
+			"uri-print-attribute": "softwareName"
+        },
+		{
+            "id": "images_to_predict",
+            "value-key": "[@ID]",
+            "command-line-flag": "--@id",
+            "name": "Images",
+			"description": "Images on which to apply the segmentation",
+            "set-by-server": false,
+            "optional": false,
+            "type": "ListDomain",
+            "uri": "/api/project/$currentProject$/imageinstance.json",
+            "uri-print-attribute": "instanceFilename",
+            "uri-sort-attribute": "instanceFilename"
+        },
+        {
+            "id": "threshold",
+			"value-key": "[@ID]",
+      		"command-line-flag": "--@id",
+			"name": "Probability threshold",
+            "set-by-server": false,
+            "optional": true,
+            "default-value": 0.5,
+            "type": "Number"
+        }
+    ]
+}
