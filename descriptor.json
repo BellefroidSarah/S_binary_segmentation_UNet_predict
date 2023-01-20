@@ -2,7 +2,7 @@
     "name": "binary_segmentation_UNet_predict",
     "description": "Predicting a segmentation mask using a UNet",
     "schema-version": "cytomine-0.1",
-	"command-line": "python run.py --cytomine_host [CYTOMINE_HOST] --cytomine_public_key [CYTOMINE_PUBLIC_KEY] --cytomine_private_key [CYTOMINE_PRIVATE_KEY] --cytomine_id_project [CYTOMINE_ID_PROJECT] --cytomine_id_software [CYTOMINE_ID_SOFTWARE] --cytomine_id_job [CYTOMINE_ID_JOB] --images_to_predict [IMAGES_TO_PREDICT] --threshold [THRESHOLD]",
+	"command-line": "python run.py [CYTOMINE_HOST] [CYTOMINE_PUBLIC_KEY] [CYTOMINE_PRIVATE_KEY] [CYTOMINE_ID_PROJECT] [CYTOMINE_ID_SOFTWARE] [CYTOMINE_ID_JOB] [IMAGES_TO_PREDICT] [THRESHOLD]",
     "container-image": {
 		"image": "bellefroid/s_binary_segmentation_unet_predict",
 		"type": "singularity"
@@ -11,7 +11,7 @@
         {
         	"id": "cytomine_host",
 			"value-key": "[@ID]",
-			"command-line-flag": "--cytomine_host",
+			"command-line-flag": "--@id",
       		"name": "Cytomine host",
       		"set-by-server": true,
       		"optional": false,
